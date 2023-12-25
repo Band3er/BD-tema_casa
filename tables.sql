@@ -22,7 +22,7 @@ CREATE TABLE TRANSPORTATION
         DESCRIPTION     VARCHAR2(60),   
         COST            NUMBER(10)
             CONSTRAINT transportation_cost_nn NOT NULL,
-            CONSTRAINT transportation_cost_ck CHECK (COST >= 0)
+            CONSTRAINT transportation_cost_ck CHECK (COST >= 0),
         CONSTRAINT transportation_id_transport_pk PRIMARY KEY (ID_TRANSPORT)
     );
 
@@ -36,7 +36,7 @@ CREATE TABLE MENU
         DESCRIPTION     VARCHAR2(60),   
         COST            NUMBER(10)
             CONSTRAINT menu_cost_nn NOT NULL,
-            CONSTRAINT menu_cost_ck CHECK (COST >= 0)
+            CONSTRAINT menu_cost_ck CHECK (COST >= 0),
         CONSTRAINT menu_id_menu_pk PRIMARY KEY (ID_MENU)
     );
 
@@ -70,10 +70,10 @@ CREATE TABLE PERSONS
             CONSTRAINT persons_id_person_nn NOT NULL,
         LAST_NAME       VARCHAR2(30)
             CONSTRAINT persons_last_name_nn NOT NULL,
-            CONSTRAINT persons_last_name_ck CHECK (REGEXP_LIKE(NAME, '[A-Za-z]+\s+')),
+            CONSTRAINT persons_last_name_ck CHECK (REGEXP_LIKE(LAST_NAME, '[A-Za-z]+\s+')),
         FIRST_NAME      VARCHAR2(30)
             CONSTRAINT persons_first_name_nn NOT NULL,
-            CONSTRAINT persons_first_name_ck CHECK (REGEXP_LIKE(NAME, '[A-Za-z]+\s+')),
+            CONSTRAINT persons_first_name_ck CHECK (REGEXP_LIKE(FIRST_NAME, '[A-Za-z]+\s+')),
         AGE             NUMBER(3)
             CONSTRAINT persons_age_nn NOT NULL,
             CONSTRAINT persons_age_ck CHECK (AGE > 0),
@@ -83,7 +83,7 @@ CREATE TABLE PERSONS
             CONSTRAINT persons_phone_number_ck CHECK (AGE LIKE '07%'),
             CONSTRAINT persons_phone_number_uk UNIQUE (PHONE_NUMBER),
         EMAIL           VARCHAR2(50),
-            CONSTRAINT persons_email_ck CHECK (EMAIL LIKE '[a-zA-Z0-9._%-]+@[a-zA-Z0-9._%-]+\.[a-zA-Z]{2,8}')
+            CONSTRAINT persons_email_ck CHECK (EMAIL LIKE '[a-zA-Z0-9._%-]+@[a-zA-Z0-9._%-]+\.[a-zA-Z]{2,8}'),
             CONSTRAINT persons_email_uk UNIQUE (EMAIL),
         BUDGET          NUMBER(3),
         TRANSPORT       NUMBER(3),
@@ -93,7 +93,7 @@ CREATE TABLE PERSONS
         CONSTRAINT persons_budget_fk FOREIGN KEY (BUDGET) REFERENCES MONEY(ID_MONEY),
         CONSTRAINT persons_transport_fk FOREIGN KEY (TRANSPORT) REFERENCES TRANSPORTATION(ID_TRANSPORT),
         CONSTRAINT persons_menu_fk FOREIGN KEY (MENU) REFERENCES MENU(ID_MENU),
-        CONSTRAINT persons_drinks_fk FOREIGN KEY (DRINKS) REFERENCES DRINKS(ID_DRINK)
+        CONSTRAINT persons_drinks_fk FOREIGN KEY (DRINKS) REFERENCES DRINKS(ID_DRINKS)
     );
 
 CREATE TABLE ENTRIES
