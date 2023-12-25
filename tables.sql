@@ -81,8 +81,10 @@ CREATE TABLE PERSONS
         PHONE_NUMBER    NUMBER(10)
             CONSTRAINT persons_phone_number_nn NOT NULL,
             CONSTRAINT persons_phone_number_ck CHECK (AGE LIKE '07%'),
+            CONSTRAINT persons_phone_number_uk UNIQUE (PHONE_NUMBER),
         EMAIL           VARCHAR2(50),
             CONSTRAINT persons_email_ck CHECK (EMAIL LIKE '[a-zA-Z0-9._%-]+@[a-zA-Z0-9._%-]+\.[a-zA-Z]{2,8}')
+            CONSTRAINT persons_email_uk UNIQUE (EMAIL),
         BUDGET          NUMBER(3),
         TRANSPORT       NUMBER(3),
         MENU            NUMBER(3),
