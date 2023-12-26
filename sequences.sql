@@ -22,13 +22,16 @@ FOR EACH ROW
 
 CREATE SEQUENCE menu_id_menu_sequence;
 
+drop sequence event_id_event_sequnce;
+drop trigger event_on_insert;
+
 CREATE OR REPLACE TRIGGER menu_on_insert
 BEFORE INSERT ON MENU
 FOR EACH ROW
     BEGIN
         SELECT menu_id_menu_sequence.nextval
         INTO :new.id_menu
-        FROM dual
+        FROM dual;
     END;
 
 CREATE SEQUENCE money_id_money_sequence;
