@@ -1,47 +1,24 @@
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
-
-import java.awt.CardLayout;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.awt.Desktop.Action;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 
 public class App {
-    // var initialization
     public static int screenHeight = 0;
     public static int screenWidth = 0;
-
-    public static JFrame frame; // main Frame
+    public static JFrame frame;
     public static MenuBar menuBar;
-    public static Dimension screenSize;
-
-    public static EventTable eventTable;
-
-    //Connect conn;
-
-    //private static final String 
-    private JPanel cardPanel;
+    public static CardLayout cardLayout;
+    public static JPanel cardPanel;
 
     public static void main(String[] args) {
-        
         SwingUtilities.invokeLater(() -> new App().createAndShowGUI());
-
-        //conn = new Connect();
-        //conn.init();
-        //conn.close();
     }
 
-    private void createAndShowGUI(){
-        // Create a JFrame
+    private void createAndShowGUI() {
         frame = new JFrame("Organizare gratar");
-
-        // Set default close operation and size
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Set the size of the frame based on the pc's specs
-        screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         frame.pack();
         screenWidth = screenSize.width * 70 / 100;
         screenHeight = screenSize.height * 70 / 100;
@@ -53,20 +30,23 @@ public class App {
         // Menu bar that contains all tables
         menuBar = new MenuBar();
         menuBar.init(frame);
-        
 
+        // Set up CardLayout and JPanel for dynamic content
+        cardLayout = new CardLayout();
+        cardPanel = new JPanel(cardLayout);
 
-        // table EVENT
-        eventTable = new EventTable();
+        // Add the main panel and the event panel to cardPanel
+        cardPanel.add(new JPanel(), "mainPanel"); // Placeholder for the main content
+        cardPanel.add(EventTable.createEventPanel(), "eventPanel"); // Content for the Event table
 
-
-        cardPanel = new JPanel(new CardLayout());
-
-        cardPanel.add(eventTable.init(frame));
-
+        // Add cardPanel to the frame
         frame.getContentPane().add(cardPanel);
 
         // Set the frame to be visible
         frame.setVisible(true);
+    }
+
+    public static void showCard(String cardName) {
+        cardLayout.show(cardPanel, cardName);
     }
 }

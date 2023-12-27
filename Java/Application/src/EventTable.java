@@ -1,48 +1,39 @@
-import java.awt.FlowLayout;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 public class EventTable {
     // var initialization
-    JPanel panel;
-    JTextField textField;
-    JButton sendButton;
+    public static JPanel panel;
+    public static JTextField textField;
+    public static JButton sendButton;
 
-    public JPanel init(JFrame mainFrame){
-        // Create a panel
+    public static JPanel createEventPanel() {
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
 
-        // Create a text field for input
         textField = new JTextField(20);
-
-        // Create a button for sending data to the database
         sendButton = new JButton("event");
+
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Get the text from the text field
-                //String inputData = textField.getText();
+                // Handle the "event" button action
+                // For example, get the text from the textField
+                String inputData = textField.getText();
+                // Perform actions related to the "Event" table
 
-                // Simulate sending data to the database
-                //sendToDatabase(inputData);
+                // Display a message (you can customize this part)
+                JOptionPane.showMessageDialog(null, "Event Data: " + inputData);
 
-                // Clear the text field after sending
+                // Clear the text field after handling the action
                 textField.setText("");
             }
         });
 
-        // Add components to the panel
         panel.add(textField);
         panel.add(sendButton);
-
-        // Add the panel to the frame
-        mainFrame.getContentPane().add(panel);
 
         return panel;
     }
