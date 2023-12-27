@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import oracle.jdbc.pool.*;
 
 public class Connect {
+    // var initialization
     OracleDataSource ods;
     Connection conn;
     ResultSet rslt;
