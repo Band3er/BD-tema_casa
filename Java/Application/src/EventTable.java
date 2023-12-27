@@ -9,6 +9,7 @@ public class EventTable {
     public static JTextField textField;
     public static JButton sendButton;
 
+    // panel for the item new
     public static JPanel createNewEventPanel() {
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
@@ -37,7 +38,8 @@ public class EventTable {
 
         return panel;
     }
-
+    
+    // panel for the item All
     public static JPanel showItemEvent(){
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
@@ -67,6 +69,7 @@ public class EventTable {
         return panel;
     }
 
+    // panel for the item delete
     public static JPanel deleteItemEvent(){
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
