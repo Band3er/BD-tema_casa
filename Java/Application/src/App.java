@@ -48,6 +48,11 @@ public class App {
         cardPanel.add(TransportationTable.showItemTransport(), "allTransportPanel"); // Content for the All Event table
         cardPanel.add(TransportationTable.deleteItemTransport(), "deleteTransportPanel"); // Content for the Delete Event table
 
+        // MENU Panels
+        cardPanel.add(MenuTable.createNewMenuPanel(), "newMenuPanel"); // Content for the New Event table
+        cardPanel.add(MenuTable.showItemMenu(), "allMenuPanel"); // Content for the All Event table
+        cardPanel.add(MenuTable.deleteItemMenu(), "deleteMenuPanel"); // Content for the Delete Event table
+
         // Add cardPanel to the frame
         frame.getContentPane().add(cardPanel);
 
