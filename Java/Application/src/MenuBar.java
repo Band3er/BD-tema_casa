@@ -24,6 +24,9 @@ public class MenuBar {
     JMenuItem newItemTransport;
     JMenuItem allItemTransport;
     JMenuItem deleteItemTransport;
+    JMenuItem newItemMenu;
+    JMenuItem allItemMenu;
+    JMenuItem deleteItemMenu;
 
     public void init(JFrame mainFrame){
         // Create a menu bar
@@ -35,7 +38,7 @@ public class MenuBar {
         tableEvent = new JMenu("Event");
         //tableEntries = new JMenu("Entries");
         tableTransportation = new JMenu("Transportation");
-        //tableMenu = new JMenu("Menu");
+        tableMenu = new JMenu("Menu");
         //tableMoney = new JMenu("Money");
         //tableDrinks = new JMenu("Drinks");
 
@@ -54,7 +57,12 @@ public class MenuBar {
         allItemTransport = new JMenuItem("All");
         deleteItemTransport = new JMenuItem("Delete");
 
-        // Add menu items to the menu
+        // create MENU items
+        newItemMenu = new JMenuItem("New");
+        allItemMenu = new JMenuItem("All");
+        deleteItemMenu = new JMenuItem("Delete");
+
+        // Add menu items to the file
         fileMenu.add(newItemFile);
         fileMenu.add(openItemFile);
         fileMenu.add(saveItemFile);
@@ -68,12 +76,17 @@ public class MenuBar {
         tableTransportation.add(newItemTransport);
         tableTransportation.add(allItemTransport);
         tableTransportation.add(deleteItemTransport);
+
+        // for the table MENU
+        tableMenu.add(newItemMenu);
+        tableMenu.add(allItemMenu);
+        tableMenu.add(deleteItemMenu);
         
         // Add the menu's to the menu bar
         menuBar.add(fileMenu);
         menuBar.add(tableEvent);
         menuBar.add(tableTransportation);
-        //menuBar.add(tableMenu);
+        menuBar.add(tableMenu);
         //menuBar.add(tableMoney);
         //menuBar.add(tableDrinks);
         //menuBar.add(tablePersons);
@@ -86,6 +99,7 @@ public class MenuBar {
         // action listener for the table Event
         eventListener();
         transportationListener();
+        menuListener();
     }
 
     // method for the EVENT table, menu items listener
@@ -137,6 +151,33 @@ public class MenuBar {
             public void actionPerformed(ActionEvent e) {
                 // Call the showCard method in the App class to switch to the "eventPanel"
                 App.showCard("deleteTransportPanel");
+            }
+        });
+    }
+
+    // Menu table item listener
+    public void menuListener(){
+        newItemMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the showCard method in the App class to switch to the "eventPanel"
+                App.showCard("newEventPanel");
+            }
+        });
+
+        allItemMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the showCard method in the App class to switch to the "eventPanel"
+                App.showCard("allEventPanel");
+            }
+        });
+
+        deleteItemMenu.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the showCard method in the App class to switch to the "eventPanel"
+                App.showCard("deleteEventPanel");
             }
         });
     }
