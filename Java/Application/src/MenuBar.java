@@ -35,6 +35,10 @@ public class MenuBar {
     JMenuItem allItemMoney;
     JMenuItem deleteItemMoney;
 
+    JMenuItem newItemDrinks;
+    JMenuItem allItemDrinks;
+    JMenuItem deleteItemDrinks;
+
     public void init(JFrame mainFrame){
         // Create a menu bar
         menuBar = new JMenuBar();
@@ -47,7 +51,7 @@ public class MenuBar {
         tableTransportation = new JMenu("Transportation");
         tableMenu = new JMenu("Menu");
         tableMoney = new JMenu("Money");
-        //tableDrinks = new JMenu("Drinks");
+        tableDrinks = new JMenu("Drinks");
 
         // Create File items
         newItemFile = new JMenuItem("New");
@@ -74,6 +78,11 @@ public class MenuBar {
         allItemMoney = new JMenuItem("All");
         deleteItemMoney = new JMenuItem("Delete");
 
+        // create DRINKS items
+        newItemDrinks = new JMenuItem("New");
+        allItemDrinks = new JMenuItem("All");
+        deleteItemDrinks = new JMenuItem("Delete");
+
         // Add menu items to the file
         fileMenu.add(newItemFile);
         fileMenu.add(openItemFile);
@@ -98,6 +107,11 @@ public class MenuBar {
         tableMoney.add(newItemMoney);
         tableMoney.add(allItemMoney);
         tableMoney.add(deleteItemMoney);
+
+        // for the table DRINKS
+        tableDrinks.add(newItemDrinks);
+        tableDrinks.add(allItemDrinks);
+        tableDrinks.add(deleteItemDrinks);
         
         // Add the menu's to the menu bar
         menuBar.add(fileMenu);
@@ -105,7 +119,7 @@ public class MenuBar {
         menuBar.add(tableTransportation);
         menuBar.add(tableMenu);
         menuBar.add(tableMoney);
-        //menuBar.add(tableDrinks);
+        menuBar.add(tableDrinks);
         //menuBar.add(tablePersons);
         //menuBar.add(tableEntries);
 
@@ -118,6 +132,7 @@ public class MenuBar {
         transportationListener();
         menuListener();
         moneyListener();
+        drinksListener();
     }
 
     // method for the EVENT table, menu items listener
@@ -223,6 +238,33 @@ public class MenuBar {
             public void actionPerformed(ActionEvent e) {
                 // Call the showCard method in the App class to switch to the "eventPanel"
                 App.showCard("deleteMoneyPanel");
+            }
+        });
+    }
+
+    // drinks table item listener
+    public void drinksListener(){
+        newItemDrinks.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the showCard method in the App class to switch to the "eventPanel"
+                App.showCard("newDrinksPanel");
+            }
+        });
+
+        allItemDrinks.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the showCard method in the App class to switch to the "eventPanel"
+                App.showCard("allDrinksPanel");
+            }
+        });
+
+        deleteItemDrinks.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the showCard method in the App class to switch to the "eventPanel"
+                App.showCard("deleteDrinksPanel");
             }
         });
     }
