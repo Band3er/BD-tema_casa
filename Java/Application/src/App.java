@@ -4,9 +4,15 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 public class App {
+    // Width and Height param
+    public static int screenHeight = 0;
+    public static int screenWidth = 0;
+    public static JFrame frame;
+    public static MenuBar menuBar;
+
     public static void main(String[] args) {
         // Create a JFrame
-        JFrame frame = new JFrame("Organizare gratar");
+        frame = new JFrame("Organizare gratar");
 
         // Create a JButton
         //JButton button = new JButton("Click Me");
@@ -28,10 +34,14 @@ public class App {
         // Set the size of the frame based on the pc's specs
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         frame.pack();
-        frame.setSize(screenSize.width / 2, screenSize.height / 2);
+        screenWidth = screenSize.width * 70 / 100;
+        screenHeight = screenSize.height * 70 / 100;
+        frame.setSize(screenWidth, screenHeight);
         
         // The location of the frame is set to center
         frame.setLocationRelativeTo(null);
+        menuBar = new MenuBar();
+        menuBar.init(frame);
 
         // Set the frame to be visible
         frame.setVisible(true);
