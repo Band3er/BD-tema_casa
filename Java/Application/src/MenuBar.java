@@ -47,7 +47,23 @@ public class MenuBar {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Call the showCard method in the App class to switch to the "eventPanel"
-                App.showCard("eventPanel");
+                App.showCard("newEventPanel");
+            }
+        });
+
+        allItemEvent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the showCard method in the App class to switch to the "eventPanel"
+                App.showCard("allEventPanel");
+            }
+        });
+
+        deleteItemEvent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the showCard method in the App class to switch to the "eventPanel"
+                App.showCard("deleteEventPanel");
             }
         });
 

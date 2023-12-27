@@ -37,7 +37,9 @@ public class App {
 
         // Add the main panel and the event panel to cardPanel
         cardPanel.add(new JPanel(), "mainPanel"); // Placeholder for the main content
-        cardPanel.add(EventTable.createEventPanel(), "eventPanel"); // Content for the Event table
+        cardPanel.add(EventTable.createNewEventPanel(), "newEventPanel"); // Content for the Event table
+        cardPanel.add(EventTable.showItemEvent(), "allEventPanel"); // Content for the Event table
+        cardPanel.add(EventTable.deleteItemEvent(), "deleteEventPanel"); // Content for the Event table
 
         // Add cardPanel to the frame
         frame.getContentPane().add(cardPanel);
