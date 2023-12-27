@@ -206,7 +206,7 @@ public class MenuBar {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Call the showCard method in the App class to switch to the "eventPanel"
-                App.showCard("newEventPanel");
+                App.showCard("newMoneyPanel");
             }
         });
 
@@ -214,7 +214,7 @@ public class MenuBar {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Call the showCard method in the App class to switch to the "eventPanel"
-                App.showCard("allEventPanel");
+                App.showCard("allMoneyPanel");
             }
         });
 
@@ -222,7 +222,7 @@ public class MenuBar {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Call the showCard method in the App class to switch to the "eventPanel"
-                App.showCard("deleteEventPanel");
+                App.showCard("deleteMoneyPanel");
             }
         });
     }
