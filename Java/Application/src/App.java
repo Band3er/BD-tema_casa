@@ -53,6 +53,11 @@ public class App {
         cardPanel.add(MenuTable.showItemMenu(), "allMenuPanel"); // Content for the All Event table
         cardPanel.add(MenuTable.deleteItemMenu(), "deleteMenuPanel"); // Content for the Delete Event table
 
+        // MENU Panels
+        cardPanel.add(MoneyTable.createNewMoneyPanel(), "newMoneyPanel"); // Content for the New Event table
+        cardPanel.add(MoneyTable.showItemMoney(), "allMoneyPanel"); // Content for the All Event table
+        cardPanel.add(MoneyTable.deleteItemMoney(), "deleteMoneyPanel"); // Content for the Delete Event table
+
         // Add cardPanel to the frame
         frame.getContentPane().add(cardPanel);
 

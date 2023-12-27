@@ -10,7 +10,7 @@ public class MoneyTable {
     public static JButton sendButton;
 
     // panel for the item new
-    public static JPanel createNewMenuPanel() {
+    public static JPanel createNewMoneyPanel() {
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
 
@@ -40,7 +40,7 @@ public class MoneyTable {
     }
     
     // panel for the item All
-    public static JPanel showItemMenu(){
+    public static JPanel showItemMoney(){
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
 
@@ -70,7 +70,7 @@ public class MoneyTable {
     }
 
     // panel for the item delete
-    public static JPanel deleteItemMenu(){
+    public static JPanel deleteItemMoney(){
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
 

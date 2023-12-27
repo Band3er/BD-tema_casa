@@ -95,9 +95,9 @@ public class MenuBar {
         tableMenu.add(deleteItemMenu);
 
         // for the table MONEY
-        tableMenu.add(newItemMoney);
-        tableMenu.add(allItemMoney);
-        tableMenu.add(deleteItemMoney);
+        tableMoney.add(newItemMoney);
+        tableMoney.add(allItemMoney);
+        tableMoney.add(deleteItemMoney);
         
         // Add the menu's to the menu bar
         menuBar.add(fileMenu);
