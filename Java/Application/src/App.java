@@ -13,7 +13,7 @@ public class App {
         SwingUtilities.invokeLater(() -> new App().createAndShowGUI());
     }
 
-    private void createAndShowGUI() {
+   private void createAndShowGUI() {
         frame = new JFrame("Organizare gratar");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -37,9 +37,16 @@ public class App {
 
         // Add the main panel and the event panel to cardPanel
         cardPanel.add(new JPanel(), "mainPanel"); // Placeholder for the main content
+        
+        // EVENT Panles
         cardPanel.add(EventTable.createNewEventPanel(), "newEventPanel"); // Content for the New Event table
         cardPanel.add(EventTable.showItemEvent(), "allEventPanel"); // Content for the All Event table
         cardPanel.add(EventTable.deleteItemEvent(), "deleteEventPanel"); // Content for the Delete Event table
+
+        // TRANSPORTATIONS Panels
+        cardPanel.add(TransportationTable.createNewTransportPanel(), "newTransportPanel"); // Content for the New Event table
+        cardPanel.add(TransportationTable.showItemTransport(), "allTransportPanel"); // Content for the All Event table
+        cardPanel.add(TransportationTable.deleteItemTransport(), "deleteTransportPanel"); // Content for the Delete Event table
 
         // Add cardPanel to the frame
         frame.getContentPane().add(cardPanel);
