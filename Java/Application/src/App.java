@@ -1,10 +1,7 @@
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class App {
     public static void main(String[] args) {
@@ -38,5 +35,9 @@ public class App {
 
         // Set the frame to be visible
         frame.setVisible(true);
+
+        Connect conn = new Connect();
+        conn.init();
+        conn.close();
     }
 }
