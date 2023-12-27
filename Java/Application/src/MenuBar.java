@@ -43,30 +43,6 @@ public class MenuBar {
         allItemEvent = new JMenuItem("All");
         deleteItemEvent = new JMenuItem("Delete");
 
-        newItemEvent.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Call the showCard method in the App class to switch to the "eventPanel"
-                App.showCard("newEventPanel");
-            }
-        });
-
-        allItemEvent.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Call the showCard method in the App class to switch to the "eventPanel"
-                App.showCard("allEventPanel");
-            }
-        });
-
-        deleteItemEvent.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Call the showCard method in the App class to switch to the "eventPanel"
-                App.showCard("deleteEventPanel");
-            }
-        });
-
         // Add menu items to the menu
         fileMenu.add(newItemFile);
         fileMenu.add(openItemFile);
@@ -90,5 +66,34 @@ public class MenuBar {
 
         // Set the menu bar for the main frame
         mainFrame.setJMenuBar(menuBar);
+
+        // action listener for the table Event
+        eventListener();
+    }
+
+    public void eventListener(){
+        newItemEvent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the showCard method in the App class to switch to the "eventPanel"
+                App.showCard("newEventPanel");
+            }
+        });
+
+        allItemEvent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the showCard method in the App class to switch to the "eventPanel"
+                App.showCard("allEventPanel");
+            }
+        });
+
+        deleteItemEvent.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the showCard method in the App class to switch to the "eventPanel"
+                App.showCard("deleteEventPanel");
+            }
+        });
     }
 }
