@@ -68,6 +68,11 @@ public class App {
         cardPanel.add(PersonsTable.showItemPersons(), "allPersonsPanel"); // Content for the All Event table
         cardPanel.add(PersonsTable.deleteItemPersons(), "deletePersonsPanel"); // Content for the Delete Event table
 
+        // ENTRIES Panels
+        cardPanel.add(EntriesTable.createNewEntriesPanel(), "newEntriesPanel"); // Content for the New Event table
+        cardPanel.add(EntriesTable.showItemEntries(), "allEntriesPanel"); // Content for the All Event table
+        cardPanel.add(EntriesTable.deleteItemEntries(), "deleteEntriesPanel"); // Content for the Delete Event table
+
         // Add cardPanel to the frame
         frame.getContentPane().add(cardPanel);
 
