@@ -129,6 +129,32 @@ public class Connect {
         }
     }
 
+    // connection used for the TRANSPORTATION TABLE
+    public void viewTablePersons(DefaultTableModel tableModel) throws SQLException {
+        String query = "select ID_PERSON,LAST_NAME, FIRST_NAME, AGE, ADDRESS, PHONE_NUMBER, EMAIL, BUDGET, TRANSPORT, MENU, DRINKS from PERSONS";
+        try (Statement stmt = conn.createStatement()) {
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+            int id = rs.getInt("ID_PERSON");
+            String lastName = rs.getString("LAST_NAME");
+            String firstName = rs.getString("FIRST_NAME");
+            int age = rs.getInt("AGE");
+            String address = rs.getString("ADDRESS");
+            int phnNbr = rs.getInt("PHONE_NUMBER");
+            String email = rs.getString("EMAIL");
+            int budget = rs.getInt("BUDGET");
+            int transport = rs.getInt("TRANSPORT");
+            int menu = rs.getInt("MENU");
+            int drinks = rs.getInt("DRINKS");
+            Object[] row = {id, lastName, firstName, age, address, phnNbr, 
+            email, budget, transport, menu, drinks};
+            tableModel.addRow(row);
+        }
+        } catch (SQLException e) {
+        e.printStackTrace();
+        }
+    }
+
 
     public boolean close(){
         try {
