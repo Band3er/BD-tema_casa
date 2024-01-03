@@ -49,9 +49,9 @@ public class Connect {
         } catch (SQLException e) {
         e.printStackTrace();
         }
-  }
+    }
 
-  public boolean populateTableTransportation(String query) {
+  public boolean populateTable(String query) {
         try (Statement stmt = conn.createStatement()) {
             int rowsAffected = stmt.executeUpdate(query);
             return rowsAffected > 0; // Return true if at least one row was affected
@@ -61,7 +61,7 @@ public class Connect {
         }
     }
 
-    public boolean deleteTableTransportation(String query) {
+    public boolean deleteTable(String query) {
         try (Statement stmt = conn.createStatement()) {
             int rowsAffected = stmt.executeUpdate(query);
             return rowsAffected > 0; // Return true if at least one row was affected
@@ -72,6 +72,26 @@ public class Connect {
     }
 
 
+
+    // table DRINKS
+
+    // connection used for the TRANSPORTATION TABLE
+    public void viewTableDrinks(DefaultTableModel tableModel) throws SQLException {
+        String query = "select ID_DRINKS, NAME, DESCRIPTION, COST from DRINKS";
+        try (Statement stmt = conn.createStatement()) {
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+            int id = rs.getInt("ID_DRINKS");
+            String name = rs.getString("NAME");
+            String description = rs.getString("DESCRIPTION");
+            int price = rs.getInt("COST");
+            Object[] row = {id, name, description, price};
+            tableModel.addRow(row);
+        }
+        } catch (SQLException e) {
+        e.printStackTrace();
+        }
+    }
 
     
 

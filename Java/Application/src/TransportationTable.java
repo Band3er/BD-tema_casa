@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class TransportationTable {
     // var initialization
-    static Connect trsp;
+    static Connect trsp = new Connect();
 
     public static JPanel panel;
 
@@ -30,7 +30,6 @@ public class TransportationTable {
     // panel for the item new
     public static JPanel createNewTransportPanel() {
         panel = new JPanel(new GridLayout(10, 1)); // 5 rows, 1 columns
-        //panel.setLayout(new FlowLayout());
 
         label1 = new JLabel("Name");
         textField1 = new JTextField(20);
@@ -58,7 +57,7 @@ public class TransportationTable {
                     inputData1 + "','" + inputData2 + "'," + inputData3 + ")";
 
               
-                    boolean st = trsp.populateTableTransportation(query);
+                    boolean st = trsp.populateTable(query);
                     
                     if(st){
                         System.out.println("inserted transportation ok");
@@ -88,8 +87,6 @@ public class TransportationTable {
     public static JPanel showItemTransport(){
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
-
-        trsp = new Connect();
 
         sendButton = new JButton("Receive info");
 
@@ -143,7 +140,7 @@ public class TransportationTable {
 
                 query = query.concat(inputDataId);
                 
-                boolean st = trsp.deleteTableTransportation(query);
+                boolean st = trsp.deleteTable(query);
 
                 if (st) {
                     System.out.println("delete row transportation ok");
