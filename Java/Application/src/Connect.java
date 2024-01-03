@@ -93,7 +93,23 @@ public class Connect {
         }
     }
 
-    
+    // connection used for the TRANSPORTATION TABLE
+    public void viewTableEvent(DefaultTableModel tableModel) throws SQLException {
+        String query = "select ID_EVENT, NAME, DATE_EVENT, LOCATION from EVENT";
+        try (Statement stmt = conn.createStatement()) {
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+            int id = rs.getInt("ID_EVENT");
+            String name = rs.getString("NAME");
+            String description = rs.getString("DATE_EVENT");
+            String location = rs.getString("LOCATION");
+            Object[] row = {id, name, description, location};
+            tableModel.addRow(row);
+        }
+        } catch (SQLException e) {
+        e.printStackTrace();
+        }
+    }
 
 
     public boolean close(){
