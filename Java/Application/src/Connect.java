@@ -1,6 +1,8 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import oracle.jdbc.pool.*;
 
 public class Connect {
@@ -22,22 +24,36 @@ public class Connect {
             conn = ods.getConnection();
             
             // the statement that we sent
-            stmt = conn.prepareStatement("SELECT last_name FROM Persons");
-            rslt = stmt.executeQuery();
+            //stmt = conn.prepareStatement("SELECT * FROM PERSONS");
+            //rslt = stmt.executeQuery();
             
             // print the statement sent
-            while (rslt.next()) {
-                System.out.println(rslt.getString(1));
-            }        
+           //while (rslt.next()) {
+           //    System.out.println(rslt.getString(1));
+           //}        
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public void executeQuery(){
+        try {
+                stmt = conn.prepareStatement("SELECT * FROM PERSONS");
+                rslt = stmt.executeQuery();
+
+                while (rslt.next()) {
+                    System.out.println(rslt.getString(1));
+                }
+        } catch (Exception e) {
+            System.out.println("Exception caught: " + e.getMessage());
+        }
+    }
+
     public void close(){
         try {
             // Close resources
-            rslt.close();
-            stmt.close();
+            //stmt.close();
+            //rslt.close();
             conn.close();
         } catch (Exception e){
             e.printStackTrace();

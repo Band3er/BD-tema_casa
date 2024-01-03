@@ -23,8 +23,8 @@ public class TransportationTable {
 
     // panel for the item new
     public static JPanel createNewTransportPanel() {
-        panel = new JPanel();
-        panel.setLayout(new FlowLayout());
+        panel = new JPanel(new GridLayout(10, 1)); // 5 rows, 2 columns
+        //panel.setLayout(new FlowLayout());
 
         label1 = new JLabel("Name");
         textField1 = new JTextField(20);
@@ -55,13 +55,15 @@ public class TransportationTable {
             }
         });
 
+        panel.add(label1);
         panel.add(textField1);
+        
+        panel.add(label2);
         panel.add(textField2);
+        
+        panel.add(label3);
         panel.add(textField3);
 
-        panel.add(label1);
-        panel.add(label2);
-        panel.add(label3);
 
         panel.add(sendButton);
 

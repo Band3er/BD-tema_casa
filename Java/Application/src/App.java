@@ -9,8 +9,14 @@ public class App {
     public static CardLayout cardLayout;
     public static JPanel cardPanel;
 
+    public static Connect conn;
+
     public static void main(String[] args) {
+        conn = new Connect();
         SwingUtilities.invokeLater(() -> new App().createAndShowGUI());
+        conn.init();
+        conn.executeQuery();
+        conn.close();
     }
 
    private void createAndShowGUI() {
