@@ -1,5 +1,10 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class App {
     public static int screenHeight = 0;
@@ -12,10 +17,7 @@ public class App {
     public static Connect conn;
 
     public static void main(String[] args) {
-        conn = new Connect();
-        conn.init();
         SwingUtilities.invokeLater(() -> new App().createAndShowGUI());
-        //conn.close();
     }
 
    private void createAndShowGUI() {
@@ -41,7 +43,7 @@ public class App {
         cardPanel = new JPanel(cardLayout);
 
         // Add the main panel and the event panel to cardPanel
-        cardPanel.add(new JPanel(), "mainPanel"); // Placeholder for the main content
+        cardPanel.add(mainInterface(), "mainInterface"); // the main content
         
         // EVENT Panles
         cardPanel.add(EventTable.createNewEventPanel(), "newEventPanel"); // Content for the New Event table
@@ -87,5 +89,51 @@ public class App {
 
     public static void showCard(String cardName) {
         cardLayout.show(cardPanel, cardName);
+    }
+
+    private static JPanel mainInterface(){
+        JPanel panel = new JPanel();
+        panel.setLayout(new FlowLayout());
+
+        JButton initButton = new JButton("Initialize DataBase connection");
+        JButton closeButton = new JButton("Release DataBase connection");
+
+        boolean init;
+        boolean close;
+
+        Connect conn = new Connect();
+
+        initButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean init = conn.init();
+
+                if(init){
+                    System.out.println("Connection established");
+                } else {
+                    System.out.println("Connection not established");
+                }
+            }
+        });
+
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean close = conn.close();
+
+                if(close){
+                    System.out.println("Connection closed succesfully");
+                } else {
+                    System.out.println("Connection not closed succesfully");
+                }
+            }
+        });
+
+        
+
+        panel.add(initButton);
+        panel.add(closeButton);
+
+        return panel;
     }
 }
