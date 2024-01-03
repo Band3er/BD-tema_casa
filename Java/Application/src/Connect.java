@@ -33,6 +33,7 @@ public class Connect {
         }
     }
 
+    // connection used for the TRANSPORTATION TABLE
     public void viewTableTransportation(DefaultTableModel tableModel) throws SQLException {
         String query = "select ID_TRANSPORT, NAME, DESCRIPTION, COST from TRANSPORTATION";
         try (Statement stmt = conn.createStatement()) {
@@ -69,6 +70,10 @@ public class Connect {
             return false; // Return false if an exception occurred
         }
     }
+
+
+
+    
 
 
     public boolean close(){

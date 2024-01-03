@@ -1,10 +1,8 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class App {
     public static int screenHeight = 0;
@@ -98,9 +96,6 @@ public class App {
         JButton initButton = new JButton("Initialize DataBase connection");
         JButton closeButton = new JButton("Release DataBase connection");
 
-        boolean init;
-        boolean close;
-
         Connect conn = new Connect();
 
         initButton.addActionListener(new ActionListener() {
@@ -128,8 +123,6 @@ public class App {
                 }
             }
         });
-
-        
 
         panel.add(initButton);
         panel.add(closeButton);

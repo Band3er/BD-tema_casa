@@ -29,7 +29,7 @@ public class TransportationTable {
 
     // panel for the item new
     public static JPanel createNewTransportPanel() {
-        panel = new JPanel(new GridLayout(10, 1)); // 5 rows, 2 columns
+        panel = new JPanel(new GridLayout(10, 1)); // 5 rows, 1 columns
         //panel.setLayout(new FlowLayout());
 
         label1 = new JLabel("Name");
@@ -54,7 +54,8 @@ public class TransportationTable {
                 // Perform actions related to the "Event" table
 
                 // Display a message (you can customize this part)
-                String query = "INSERT INTO TRANSPORTATION(NAME, DESCRIPTION, COST) VALUES('" + inputData1 + "','" + inputData2 + "'," + inputData3 + ")";
+                String query = "INSERT INTO TRANSPORTATION(NAME, DESCRIPTION, COST) VALUES('" + 
+                    inputData1 + "','" + inputData2 + "'," + inputData3 + ")";
 
               
                     boolean st = trsp.populateTableTransportation(query);
