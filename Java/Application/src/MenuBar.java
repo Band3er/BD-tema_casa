@@ -6,7 +6,7 @@ public class MenuBar {
     // var initialization
     JMenuBar menuBar;
 
-    JMenu fileMenu;
+    JMenu mainInterface;
     JMenu tableDrinks;
     JMenu tableEntries;
     JMenu tableEvent;
@@ -15,9 +15,7 @@ public class MenuBar {
     JMenu tablePersons;
     JMenu tableTransportation;
 
-    JMenuItem newItemFile; 
-    JMenuItem openItemFile;
-    JMenuItem saveItemFile;
+    JMenuItem mainItem;
 
     JMenuItem newItemEvent;
     JMenuItem allItemEvent;
@@ -52,7 +50,7 @@ public class MenuBar {
         menuBar = new JMenuBar();
 
         // Create a menu
-        fileMenu = new JMenu("File");
+        mainInterface = new JMenu("Main");
         tableEvent = new JMenu("Event");
         tableTransportation = new JMenu("Transportation");
         tableMenu = new JMenu("Menu");
@@ -61,10 +59,8 @@ public class MenuBar {
         tablePersons = new JMenu("Persons");
         tableEntries = new JMenu("Entries");
 
-        // Create File items
-        newItemFile = new JMenuItem("New");
-        openItemFile = new JMenuItem("Open");
-        saveItemFile = new JMenuItem("Save");
+        // create main item
+        mainItem = new JMenuItem("main");
 
         // create EVENT items
         newItemEvent = new JMenuItem("New");
@@ -100,12 +96,10 @@ public class MenuBar {
         newItemEntries = new JMenuItem("New");
         allItemEntries = new JMenuItem("All");
         deleteItemEntries = new JMenuItem("Delete");
-
-        // Add menu items to the file
-        fileMenu.add(newItemFile);
-        fileMenu.add(openItemFile);
-        fileMenu.add(saveItemFile);
         
+        // for the main interface
+        mainInterface.add(mainItem);
+
         // for table Event
         tableEvent.add(newItemEvent);
         tableEvent.add(allItemEvent);
@@ -142,7 +136,7 @@ public class MenuBar {
         tableEntries.add(deleteItemEntries);
         
         // Add the menu's to the menu bar
-        menuBar.add(fileMenu);
+        menuBar.add(mainInterface);
         menuBar.add(tableEvent);
         menuBar.add(tableTransportation);
         menuBar.add(tableMenu);
@@ -156,6 +150,7 @@ public class MenuBar {
         mainFrame.setJMenuBar(menuBar);
 
         // action listener for the table Event
+        mainListener();
         eventListener();
         transportationListener();
         menuListener();
@@ -163,6 +158,17 @@ public class MenuBar {
         drinksListener();
         personsListener();
         entriesListener();
+    }
+
+    // method for the EVENT table, menu items listener
+    public void mainListener(){
+        mainItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Call the showCard method in the App class to switch to the "eventPanel"
+                App.showCard("mainInterface");
+            }
+        });
     }
 
     // method for the EVENT table, menu items listener

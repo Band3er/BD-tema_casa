@@ -60,16 +60,11 @@ public class TransportationTable {
                     boolean st = trsp.populateTableTransportation(query);
                     
                     if(st){
-                        System.out.println("ok");
+                        System.out.println("inserted transportation ok");
                     } else {
-                        System.out.println("not ok");
+                        System.out.println("inserted transportation not ok");
                     }
 
-
-                
-
-                // Clear the text field after handling the action
-                textField1.setText("");
             }
         });
 
@@ -107,6 +102,7 @@ public class TransportationTable {
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                tableModel.setRowCount(0); // sa nu se multiplice randurile in interfata
                 try {
                     trsp.viewTableTransportation(tableModel);
                 } catch (SQLException e1) {
@@ -146,7 +142,13 @@ public class TransportationTable {
 
                 query = query.concat(inputDataId);
                 
-                trsp.deleteTableTransportation(query);
+                boolean st = trsp.deleteTableTransportation(query);
+
+                if (st) {
+                    System.out.println("delete row transportation ok");
+                } else {
+                    System.out.println("delete transportation not ok");
+                }
             }
         });
 

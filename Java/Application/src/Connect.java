@@ -15,7 +15,7 @@ public class Connect {
     ResultSet rslt;
     PreparedStatement stmt;
 
-    public void init(){
+    public boolean init(){
         try {
             // the connection param
             ods = new OracleDataSource();
@@ -26,16 +26,10 @@ public class Connect {
             // Attempts to establish a connection with the data source that
             conn = ods.getConnection();
             
-            // the statement that we sent
-            //stmt = conn.prepareStatement("SELECT * FROM PERSONS");
-            //rslt = stmt.executeQuery();
-            
-            // print the statement sent
-           //while (rslt.next()) {
-           //    System.out.println(rslt.getString(1));
-           //}        
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 
@@ -77,14 +71,13 @@ public class Connect {
     }
 
 
-    public void close(){
+    public boolean close(){
         try {
-            // Close resources
-            //stmt.close();
-            //rslt.close();
             conn.close();
+            return true;
         } catch (Exception e){
             e.printStackTrace();
+            return false;
         }
     }
 }
