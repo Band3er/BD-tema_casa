@@ -111,6 +111,24 @@ public class Connect {
         }
     }
 
+    // connection used for the TRANSPORTATION TABLE
+    public void viewTableMenu(DefaultTableModel tableModel) throws SQLException {
+        String query = "select ID_MENU, NAME, DESCRIPTION, COST from MENU";
+        try (Statement stmt = conn.createStatement()) {
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+            int id = rs.getInt("ID_MENU");
+            String name = rs.getString("NAME");
+            String description = rs.getString("DESCRIPTION");
+            int cost = rs.getInt("COST");
+            Object[] row = {id, name, description, cost};
+            tableModel.addRow(row);
+        }
+        } catch (SQLException e) {
+        e.printStackTrace();
+        }
+    }
+
 
     public boolean close(){
         try {
