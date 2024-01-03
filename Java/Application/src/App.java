@@ -13,10 +13,9 @@ public class App {
 
     public static void main(String[] args) {
         conn = new Connect();
-        SwingUtilities.invokeLater(() -> new App().createAndShowGUI());
         conn.init();
-        conn.executeQuery();
-        conn.close();
+        SwingUtilities.invokeLater(() -> new App().createAndShowGUI());
+        //conn.close();
     }
 
    private void createAndShowGUI() {

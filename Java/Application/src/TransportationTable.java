@@ -1,15 +1,21 @@
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 public class TransportationTable {
     // var initialization
+    static Connect trsp;
+
     public static JPanel panel;
 
     public static JTextField textField1;
     public static JTextField textField2;
     public static JTextField textField3;
+    public static JTextField textField4;
 
     public static String inputData1;
     public static String inputData2;
@@ -48,7 +54,19 @@ public class TransportationTable {
                 // Perform actions related to the "Event" table
 
                 // Display a message (you can customize this part)
-                JOptionPane.showMessageDialog(null, "Name: " + inputData1 + ", Descripton: " + inputData2 + ", Cost:" + inputData3);
+                String query = "INSERT INTO TRANSPORTATION(NAME, DESCRIPTION, COST) VALUES('" + inputData1 + "','" + inputData2 + "'," + inputData3 + ")";
+
+              
+                    boolean st = trsp.populateTableTransportation(query);
+                    
+                    if(st){
+                        System.out.println("ok");
+                    } else {
+                        System.out.println("not ok");
+                    }
+
+
+                
 
                 // Clear the text field after handling the action
                 textField1.setText("");
@@ -75,15 +93,35 @@ public class TransportationTable {
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
 
-       
+        trsp = new Connect();
+
+        sendButton = new JButton("Receive info");
+
+        // Create a table model with some data
+            DefaultTableModel tableModel = new DefaultTableModel();
+            tableModel.addColumn("ID");
+            tableModel.addColumn("Name");
+            tableModel.addColumn("Description");
+            tableModel.addColumn("Cost");
 
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                try {
+                    trsp.viewTableTransportation(tableModel);
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
             }
         });
 
+        JTable table = new JTable(tableModel);
+
+        // Add the table to a scroll pane
+        JScrollPane scrollPane = new JScrollPane(table);
+        panel.add(scrollPane);
+
+        panel.add(sendButton);
 
         return panel;
     }
@@ -93,16 +131,28 @@ public class TransportationTable {
         panel = new JPanel();
         panel.setLayout(new FlowLayout());
 
-    
+        label1 = new JLabel("Select ID to be deleted");
+        textField4 = new JTextField(20);
+
+        sendButton = new JButton("Delete info");
 
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                String inputDataId = textField4.getText();
                
+                String query = "DELETE FROM TRANSPORTATION WHERE ID_TRANSPORT = ";
+
+                query = query.concat(inputDataId);
+                
+                trsp.deleteTableTransportation(query);
             }
         });
 
-      
+        panel.add(label1);
+        panel.add(textField4);
+        panel.add(sendButton);
 
         return panel;
     }

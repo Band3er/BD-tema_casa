@@ -2,13 +2,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.table.DefaultTableModel;
 
 import oracle.jdbc.pool.*;
 
 public class Connect {
     // var initialization
     OracleDataSource ods;
-    Connection conn;
+    static Connection conn;
     ResultSet rslt;
     PreparedStatement stmt;
 
@@ -36,18 +39,43 @@ public class Connect {
         }
     }
 
-    public void executeQuery(){
-        try {
-                stmt = conn.prepareStatement("SELECT * FROM PERSONS");
-                rslt = stmt.executeQuery();
+    public void viewTableTransportation(DefaultTableModel tableModel) throws SQLException {
+        String query = "select ID_TRANSPORT, NAME, DESCRIPTION, COST from TRANSPORTATION";
+        try (Statement stmt = conn.createStatement()) {
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+            int id = rs.getInt("ID_TRANSPORT");
+            String name = rs.getString("NAME");
+            String description = rs.getString("DESCRIPTION");
+            int price = rs.getInt("COST");
+            Object[] row = {id, name, description, price};
+            tableModel.addRow(row);
+        }
+        } catch (SQLException e) {
+        e.printStackTrace();
+        }
+  }
 
-                while (rslt.next()) {
-                    System.out.println(rslt.getString(1));
-                }
-        } catch (Exception e) {
-            System.out.println("Exception caught: " + e.getMessage());
+  public boolean populateTableTransportation(String query) {
+        try (Statement stmt = conn.createStatement()) {
+            int rowsAffected = stmt.executeUpdate(query);
+            return rowsAffected > 0; // Return true if at least one row was affected
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Return false if an exception occurred
         }
     }
+
+    public boolean deleteTableTransportation(String query) {
+        try (Statement stmt = conn.createStatement()) {
+            int rowsAffected = stmt.executeUpdate(query);
+            return rowsAffected > 0; // Return true if at least one row was affected
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Return false if an exception occurred
+        }
+    }
+
 
     public void close(){
         try {
