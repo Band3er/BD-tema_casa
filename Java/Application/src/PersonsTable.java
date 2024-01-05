@@ -4,7 +4,12 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PersonsTable {
     // var initialization
@@ -47,6 +52,15 @@ public class PersonsTable {
     public static JLabel label10;
 
     public static JButton sendButton;
+    public static JButton getButton;
+
+    public static JComboBox<String> transportComboBox;
+    public static JComboBox<String> menuComboBox;
+    public static JComboBox<String> drinksComboBox;
+
+    static String firstNumber;
+    static String secondNumber;
+    static String thirdNumber;
 
     // panel for the item new
     public static JPanel createNewPersonsPanel() {
@@ -74,15 +88,42 @@ public class PersonsTable {
         textField7 = new JTextField(20);
 
         label8 = new JLabel("Transport");
-        textField8 = new JTextField(20);
-
+         
+        
+        
         label9 = new JLabel("Menu");
         textField9 = new JTextField(20);
 
         label10 = new JLabel("Drinks");
         textField10 = new JTextField(20);
 
+        getButton = new JButton("get info");
         sendButton = new JButton("send info");
+
+        transportComboBox = new JComboBox<>();
+        menuComboBox = new JComboBox<>();
+        drinksComboBox = new JComboBox<>();
+
+        getButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                try {
+                    
+                    String[] transportOptions = prsn.getTransportOptions();
+                    transportComboBox.setModel(new DefaultComboBoxModel<>(transportOptions));
+
+                    String[] menuOptions = prsn.getMenuOptions();
+                    menuComboBox.setModel(new DefaultComboBoxModel<>(menuOptions));
+
+                    String[] drinksOptions = prsn.getDrinksOptions();
+                    drinksComboBox.setModel(new DefaultComboBoxModel<>(drinksOptions));
+                } catch (SQLException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                
+            }
+        });
 
         sendButton.addActionListener(new ActionListener() {
             @Override
@@ -94,16 +135,44 @@ public class PersonsTable {
                 inputData5 = textField5.getText(); // phone number
                 inputData6 = textField6.getText(); // email
                 inputData7 = textField7.getText(); // budget
-                inputData8 = textField8.getText(); // transport
-                inputData9 = textField9.getText(); // menu
-                inputData10 = textField10.getText(); // drinks
+                inputData8 = (String) transportComboBox.getSelectedItem(); // transport
+                inputData9 = (String) menuComboBox.getSelectedItem(); // menu
+                inputData10 = (String) drinksComboBox.getSelectedItem(); // drinks
+
+                Pattern pattern = Pattern.compile("[0-9]+");
+                Matcher matcher = pattern.matcher(inputData8);
+
+                if (matcher.find()) {
+                    // Extract the matched number
+                    firstNumber = matcher.group();
+                } else {
+                    System.out.println("No number found in the string.");
+                }
+
+                matcher = pattern.matcher(inputData9);
+
+                if (matcher.find()) {
+                    // Extract the matched number
+                    secondNumber = matcher.group();
+                } else {
+                    System.out.println("No number found in the string.");
+                }
+
+                matcher = pattern.matcher(inputData10);
+
+                if (matcher.find()) {
+                    // Extract the matched number
+                    thirdNumber = matcher.group();
+                } else {
+                    System.out.println("No number found in the string.");
+                }
 
                 String query = "INSERT INTO PERSONS(LAST_NAME, FIRST_NAME, AGE, ADDRESS, PHONE_NUMBER, EMAIL, BUDGET, TRANSPORT, MENU, DRINKS) VALUES('"
                 + inputData1 + "','" + inputData2 + "'," + inputData3 + ",'"
                 + inputData4 + "'," + inputData5 + ",'" + inputData6
-                + "'," + inputData7 + "," + inputData8 + "," + inputData9
-                + "," + inputData10 + ")";
-
+                + "'," + inputData7 + "," + firstNumber + "," + secondNumber
+                + "," + thirdNumber + ")";
+                
                 boolean st = prsn.populateTable(query);
                     
                     if(st){
@@ -136,18 +205,21 @@ public class PersonsTable {
         panel.add(textField7);
 
         panel.add(label8);
-        panel.add(textField8);
+        panel.add(transportComboBox);
 
         panel.add(label9);
-        panel.add(textField9);
+        panel.add(menuComboBox);
 
         panel.add(label10);
-        panel.add(textField10);
+        panel.add(drinksComboBox);
 
+        panel.add(getButton);
         panel.add(sendButton);
 
         return panel;
     }
+
+    
     
     // panel for the item All
     public static JPanel showItemPersons(){
@@ -167,6 +239,7 @@ public class PersonsTable {
             tableModel.addColumn("email");
             tableModel.addColumn("budget");
             tableModel.addColumn("transport");
+            tableModel.addColumn("menu");
             tableModel.addColumn("drinks");
 
         sendButton.addActionListener(new ActionListener() {
