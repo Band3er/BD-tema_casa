@@ -4,10 +4,10 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
+
+
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,8 +23,6 @@ public class PersonsTable {
     public static JTextField textField4;
     public static JTextField textField5;
     public static JTextField textField6;
-    public static JTextField textField7;
-    public static JTextField textField8;
     public static JTextField textField9;
     public static JTextField textField10;
     public static JTextField textField11;
@@ -84,12 +82,7 @@ public class PersonsTable {
         label6 = new JLabel("EMAIL");
         textField6 = new JTextField(20);
 
-        label7 = new JLabel("BUDGET");
-        textField7 = new JTextField(20);
-
         label8 = new JLabel("Transport");
-         
-        
         
         label9 = new JLabel("Menu");
         textField9 = new JTextField(20);
@@ -118,10 +111,8 @@ public class PersonsTable {
                     String[] drinksOptions = prsn.getDrinksOptions();
                     drinksComboBox.setModel(new DefaultComboBoxModel<>(drinksOptions));
                 } catch (SQLException e1) {
-                    // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
-                
             }
         });
 
@@ -134,7 +125,6 @@ public class PersonsTable {
                 inputData4 = textField4.getText(); // address
                 inputData5 = textField5.getText(); // phone number
                 inputData6 = textField6.getText(); // email
-                inputData7 = textField7.getText(); // budget
                 inputData8 = (String) transportComboBox.getSelectedItem(); // transport
                 inputData9 = (String) menuComboBox.getSelectedItem(); // menu
                 inputData10 = (String) drinksComboBox.getSelectedItem(); // drinks
@@ -167,10 +157,10 @@ public class PersonsTable {
                     System.out.println("No number found in the string.");
                 }
 
-                String query = "INSERT INTO PERSONS(LAST_NAME, FIRST_NAME, AGE, ADDRESS, PHONE_NUMBER, EMAIL, BUDGET, TRANSPORT, MENU, DRINKS) VALUES('"
+                String query = "INSERT INTO PERSONS(LAST_NAME, FIRST_NAME, AGE, ADDRESS, PHONE_NUMBER, EMAIL, TRANSPORT, MENU, DRINKS) VALUES('"
                 + inputData1 + "','" + inputData2 + "'," + inputData3 + ",'"
                 + inputData4 + "'," + inputData5 + ",'" + inputData6
-                + "'," + inputData7 + "," + firstNumber + "," + secondNumber
+                + "'," + firstNumber + "," + secondNumber
                 + "," + thirdNumber + ")";
                 
                 boolean st = prsn.populateTable(query);
@@ -201,9 +191,6 @@ public class PersonsTable {
         panel.add(label6);
         panel.add(textField6);
 
-        panel.add(label7);
-        panel.add(textField7);
-
         panel.add(label8);
         panel.add(transportComboBox);
 
@@ -217,9 +204,7 @@ public class PersonsTable {
         panel.add(sendButton);
 
         return panel;
-    }
-
-    
+    }  
     
     // panel for the item All
     public static JPanel showItemPersons(){
@@ -237,7 +222,6 @@ public class PersonsTable {
             tableModel.addColumn("Address");
             tableModel.addColumn("phone number");
             tableModel.addColumn("email");
-            tableModel.addColumn("budget");
             tableModel.addColumn("transport");
             tableModel.addColumn("menu");
             tableModel.addColumn("drinks");
@@ -281,7 +265,7 @@ public class PersonsTable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String inputDataId = textField11.getText();
-               //TODO: e foreign key si trb dat delete in cascada parca
+               
                 String query = "DELETE FROM PERSONS WHERE ID_PERSON = ";
 
                 query = query.concat(inputDataId);

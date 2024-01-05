@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -17,6 +16,7 @@ public class Connect {
     ResultSet rslt;
     PreparedStatement stmt;
 
+    // open the connection
     public boolean init(){
         try {
             // the connection param
@@ -35,7 +35,40 @@ public class Connect {
         }
     }
 
-    // connection used for the TRANSPORTATION TABLE
+    // close the connection
+    public boolean close(){
+        try {
+            conn.close();
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // template to populate all tables
+    public boolean populateTable(String query) {
+        try (Statement stmt = conn.createStatement()) {
+            int rowsAffected = stmt.executeUpdate(query);
+            return rowsAffected > 0; // Return true if at least one row was affected
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Return false if an exception occurred
+        }
+    }
+
+    // template to delete a row from a table
+    public boolean deleteTable(String query) {
+        try (Statement stmt = conn.createStatement()) {
+            int rowsAffected = stmt.executeUpdate(query);
+            return rowsAffected > 0; // Return true if at least one row was affected
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Return false if an exception occurred
+        }
+    }
+
+    // connection used to view TRANSPORTATION TABLE
     public void viewTableTransportation(DefaultTableModel tableModel) throws SQLException {
         String query = "select ID_TRANSPORT, NAME, DESCRIPTION, COST from TRANSPORTATION";
         try (Statement stmt = conn.createStatement()) {
@@ -53,31 +86,7 @@ public class Connect {
         }
     }
 
-  public boolean populateTable(String query) {
-        try (Statement stmt = conn.createStatement()) {
-            int rowsAffected = stmt.executeUpdate(query);
-            return rowsAffected > 0; // Return true if at least one row was affected
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false; // Return false if an exception occurred
-        }
-    }
-
-    public boolean deleteTable(String query) {
-        try (Statement stmt = conn.createStatement()) {
-            int rowsAffected = stmt.executeUpdate(query);
-            return rowsAffected > 0; // Return true if at least one row was affected
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false; // Return false if an exception occurred
-        }
-    }
-
-
-
-    // table DRINKS
-
-    // connection used for the TRANSPORTATION TABLE
+    // connection used to view DRINKS TABLE
     public void viewTableDrinks(DefaultTableModel tableModel) throws SQLException {
         String query = "select ID_DRINKS, NAME, DESCRIPTION, COST from DRINKS";
         try (Statement stmt = conn.createStatement()) {
@@ -95,7 +104,7 @@ public class Connect {
         }
     }
 
-    // connection used for the TRANSPORTATION TABLE
+    // connection used to view EVENT TABLE
     public void viewTableEvent(DefaultTableModel tableModel) throws SQLException {
         String query = "select ID_EVENT, NAME, DATE_EVENT, LOCATION from EVENT";
         try (Statement stmt = conn.createStatement()) {
@@ -113,7 +122,7 @@ public class Connect {
         }
     }
 
-    // connection used for the TRANSPORTATION TABLE
+    // connection used to view MENU TABLE
     public void viewTableMenu(DefaultTableModel tableModel) throws SQLException {
         String query = "select ID_MENU, NAME, DESCRIPTION, COST from MENU";
         try (Statement stmt = conn.createStatement()) {
@@ -131,9 +140,9 @@ public class Connect {
         }
     }
 
-    // connection used for the TRANSPORTATION TABLE
+    // connection used to view PERSONS TABLE
     public void viewTablePersons(DefaultTableModel tableModel) throws SQLException {
-        String query = "select ID_PERSON,LAST_NAME, FIRST_NAME, AGE, ADDRESS, PHONE_NUMBER, EMAIL, my.TOTAL as MONEY, t.NAME as transport_name, m.NAME as menu_name, d.NAME as drinks_name from PERSONS p, DRINKS d, MENU m, TRANSPORTATION t, MONEY my WHERE p.BUDGET = my.ID_MONEY AND p.DRINKS = d.ID_DRINKS AND p.MENU = m.ID_MENU AND p.TRANSPORT = t.ID_TRANSPORT";
+        String query = "select ID_PERSON,LAST_NAME, FIRST_NAME, AGE, ADDRESS, PHONE_NUMBER, EMAIL, t.NAME as transport_name, m.NAME as menu_name, d.NAME as drinks_name from PERSONS p, DRINKS d, MENU m, TRANSPORTATION t WHERE p.DRINKS = d.ID_DRINKS AND p.MENU = m.ID_MENU AND p.TRANSPORT = t.ID_TRANSPORT";
         try (Statement stmt = conn.createStatement()) {
         ResultSet rs = stmt.executeQuery(query);
         while (rs.next()) {
@@ -144,12 +153,12 @@ public class Connect {
             String address = rs.getString("ADDRESS");
             int phnNbr = rs.getInt("PHONE_NUMBER");
             String email = rs.getString("EMAIL");
-            int budget = rs.getInt("MONEY");
+            //int budget = rs.getInt("MONEY");
             String transport = rs.getString("transport_name");
             String menu = rs.getString("menu_name");
             String drinks = rs.getString("drinks_name");
             Object[] row = {id, lastName, firstName, age, address, phnNbr, 
-            email, budget, transport, menu, drinks};
+            email, transport, menu, drinks};
             tableModel.addRow(row);
         }
         } catch (SQLException e) {
@@ -157,6 +166,7 @@ public class Connect {
         }
     }
 
+    // method to get the options from TRANSPORTATION TABLE for the dropdown when inserting values to the TABLE PERSONS
     public String[] getTransportOptions() throws SQLException{
         String query = "SELECT ID_TRANSPORT, NAME FROM TRANSPORTATION";
         ArrayList<String> stringList = new ArrayList<>();
@@ -177,6 +187,7 @@ public class Connect {
         return stringArray;
     }
 
+    // method to get the options from MENU TABLE for the dropdown when inserting values to the TABLE PERSONS
     public String[] getMenuOptions() throws SQLException{
         String query = "SELECT ID_MENU, NAME FROM MENU";
         ArrayList<String> stringList = new ArrayList<>();
@@ -197,6 +208,7 @@ public class Connect {
         return stringArray;
     }
 
+    // method to get the options from DRINKS TABLE for the dropdown when inserting values to the TABLE PERSONS
     public String[] getDrinksOptions() throws SQLException{
         String query = "SELECT ID_DRINKS, NAME FROM DRINKS";
         ArrayList<String> stringList = new ArrayList<>();
@@ -215,15 +227,5 @@ public class Connect {
         }   
         String[] stringArray = stringList.toArray(new String[0]);
         return stringArray;
-    }
-
-    public boolean close(){
-        try {
-            conn.close();
-            return true;
-        } catch (Exception e){
-            e.printStackTrace();
-            return false;
-        }
     }
 }

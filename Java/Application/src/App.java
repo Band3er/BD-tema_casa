@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 public class App {
     public static int screenHeight = 0;
     public static int screenWidth = 0;
+    
     public static JFrame frame;
     public static MenuBar menuBar;
     public static CardLayout cardLayout;
@@ -58,11 +59,6 @@ public class App {
         cardPanel.add(MenuTable.showItemMenu(), "allMenuPanel"); // Content for the All Event table
         cardPanel.add(MenuTable.deleteItemMenu(), "deleteMenuPanel"); // Content for the Delete Event table
 
-        // MONEY Panels
-        cardPanel.add(MoneyTable.createNewMoneyPanel(), "newMoneyPanel"); // Content for the New Event table
-        cardPanel.add(MoneyTable.showItemMoney(), "allMoneyPanel"); // Content for the All Event table
-        cardPanel.add(MoneyTable.deleteItemMoney(), "deleteMoneyPanel"); // Content for the Delete Event table
-
         // DRINKS Panels
         cardPanel.add(DrinksTable.createNewDrinksPanel(), "newDrinksPanel"); // Content for the New Event table
         cardPanel.add(DrinksTable.showItemDrinks(), "allDrinksPanel"); // Content for the All Event table
@@ -72,11 +68,6 @@ public class App {
         cardPanel.add(PersonsTable.createNewPersonsPanel(), "newPersonsPanel"); // Content for the New Event table
         cardPanel.add(PersonsTable.showItemPersons(), "allPersonsPanel"); // Content for the All Event table
         cardPanel.add(PersonsTable.deleteItemPersons(), "deletePersonsPanel"); // Content for the Delete Event table
-
-        // ENTRIES Panels
-        cardPanel.add(EntriesTable.createNewEntriesPanel(), "newEntriesPanel"); // Content for the New Event table
-        cardPanel.add(EntriesTable.showItemEntries(), "allEntriesPanel"); // Content for the All Event table
-        cardPanel.add(EntriesTable.deleteItemEntries(), "deleteEntriesPanel"); // Content for the Delete Event table
 
         // Add cardPanel to the frame
         frame.getContentPane().add(cardPanel);
