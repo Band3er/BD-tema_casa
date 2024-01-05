@@ -153,7 +153,6 @@ public class Connect {
             String address = rs.getString("ADDRESS");
             int phnNbr = rs.getInt("PHONE_NUMBER");
             String email = rs.getString("EMAIL");
-            //int budget = rs.getInt("MONEY");
             String transport = rs.getString("transport_name");
             String menu = rs.getString("menu_name");
             String drinks = rs.getString("drinks_name");

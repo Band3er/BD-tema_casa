@@ -46,14 +46,14 @@ public class MenuTable {
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Handle the "event" button action
-                // For example, get the text from the textField
+                // Handle the button action
+                
                 inputData1 = textField1.getText();
                 inputData2 = textField2.getText();
                 inputData3 = textField3.getText();
-                // Perform actions related to the "Event" table
+                // Perform actions related to the MENU table
 
-                // Display a message (you can customize this part)
+                // Display a message 
                 String query = "INSERT INTO MENU(NAME, DESCRIPTION, COST) VALUES('" + 
                     inputData1 + "','" + inputData2 + "'," + inputData3 + ")";
 

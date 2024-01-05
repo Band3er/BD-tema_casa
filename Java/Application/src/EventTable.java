@@ -50,7 +50,6 @@ public class EventTable {
         p.put("text.month", "Month");
         p.put("text.year", "Year");
         JDatePanelImpl datePanel = new JDatePanelImpl(model, p);
-        // Don't know about the formatter, but there it is...
         JDatePickerImpl datePicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
 
 
@@ -63,7 +62,6 @@ public class EventTable {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Handle the "event" button action
-                // For example, get the text from the textField
                 inputData1 = textField1.getText();
 
                 Object selectedDateObject = datePicker.getModel().getValue();
@@ -71,9 +69,9 @@ public class EventTable {
                 inputData2 = dateFormat.format((Date) selectedDateObject);
 
                 inputData3 = textField3.getText();
-                // Perform actions related to the "Event" table
+                // Perform actions related to the Event table
 
-                //Display a message (you can customize this part)
+                //Display a message
                 String query = "INSERT INTO EVENT(NAME, DATE_EVENT, LOCATION) VALUES('" + 
                     inputData1 + "','" + inputData2 + "','" + inputData3 + "')";
 

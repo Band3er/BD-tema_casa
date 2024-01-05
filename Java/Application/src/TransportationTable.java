@@ -29,7 +29,7 @@ public class TransportationTable {
 
     // panel for the item new
     public static JPanel createNewTransportPanel() {
-        panel = new JPanel(new GridLayout(10, 1)); // 5 rows, 1 columns
+        panel = new JPanel(new GridLayout(10, 1)); // 10 rows, 1 columns
 
         label1 = new JLabel("Name");
         textField1 = new JTextField(20);
@@ -45,18 +45,13 @@ public class TransportationTable {
         sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // Handle the "event" button action
-                // For example, get the text from the textField
                 inputData1 = textField1.getText();
                 inputData2 = textField2.getText();
                 inputData3 = textField3.getText();
-                // Perform actions related to the "Event" table
 
-                // Display a message (you can customize this part)
                 String query = "INSERT INTO TRANSPORTATION(NAME, DESCRIPTION, COST) VALUES('" + 
                     inputData1 + "','" + inputData2 + "'," + inputData3 + ")";
 
-              
                     boolean st = trsp.populateTable(query);
                     
                     if(st){

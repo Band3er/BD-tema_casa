@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 public class App {
     public static int screenHeight = 0;
     public static int screenWidth = 0;
-    
+
     public static JFrame frame;
     public static MenuBar menuBar;
     public static CardLayout cardLayout;
@@ -50,24 +50,24 @@ public class App {
         cardPanel.add(EventTable.deleteItemEvent(), "deleteEventPanel"); // Content for the Delete Event table
 
         // TRANSPORTATIONS Panels
-        cardPanel.add(TransportationTable.createNewTransportPanel(), "newTransportPanel"); // Content for the New Event table
-        cardPanel.add(TransportationTable.showItemTransport(), "allTransportPanel"); // Content for the All Event table
-        cardPanel.add(TransportationTable.deleteItemTransport(), "deleteTransportPanel"); // Content for the Delete Event table
+        cardPanel.add(TransportationTable.createNewTransportPanel(), "newTransportPanel"); // Content for the New TRANSPORTATION table
+        cardPanel.add(TransportationTable.showItemTransport(), "allTransportPanel"); // Content for the All TRANSPORTATION table
+        cardPanel.add(TransportationTable.deleteItemTransport(), "deleteTransportPanel"); // Content for the Delete TRANSPORTATION table
 
         // MENU Panels
-        cardPanel.add(MenuTable.createNewMenuPanel(), "newMenuPanel"); // Content for the New Event table
-        cardPanel.add(MenuTable.showItemMenu(), "allMenuPanel"); // Content for the All Event table
-        cardPanel.add(MenuTable.deleteItemMenu(), "deleteMenuPanel"); // Content for the Delete Event table
+        cardPanel.add(MenuTable.createNewMenuPanel(), "newMenuPanel"); // Content for the New MENU table
+        cardPanel.add(MenuTable.showItemMenu(), "allMenuPanel"); // Content for the All MENU table
+        cardPanel.add(MenuTable.deleteItemMenu(), "deleteMenuPanel"); // Content for the Delete MENU table
 
         // DRINKS Panels
-        cardPanel.add(DrinksTable.createNewDrinksPanel(), "newDrinksPanel"); // Content for the New Event table
-        cardPanel.add(DrinksTable.showItemDrinks(), "allDrinksPanel"); // Content for the All Event table
-        cardPanel.add(DrinksTable.deleteItemDrinks(), "deleteDrinksPanel"); // Content for the Delete Event table
+        cardPanel.add(DrinksTable.createNewDrinksPanel(), "newDrinksPanel"); // Content for the New DRINKS table
+        cardPanel.add(DrinksTable.showItemDrinks(), "allDrinksPanel"); // Content for the All DRINKS table
+        cardPanel.add(DrinksTable.deleteItemDrinks(), "deleteDrinksPanel"); // Content for the Delete DRINKS table
 
         // PERSONS Panels
-        cardPanel.add(PersonsTable.createNewPersonsPanel(), "newPersonsPanel"); // Content for the New Event table
-        cardPanel.add(PersonsTable.showItemPersons(), "allPersonsPanel"); // Content for the All Event table
-        cardPanel.add(PersonsTable.deleteItemPersons(), "deletePersonsPanel"); // Content for the Delete Event table
+        cardPanel.add(PersonsTable.createNewPersonsPanel(), "newPersonsPanel"); // Content for the New PERSONS table
+        cardPanel.add(PersonsTable.showItemPersons(), "allPersonsPanel"); // Content for the All PERSONS table
+        cardPanel.add(PersonsTable.deleteItemPersons(), "deletePersonsPanel"); // Content for the Delete PERSONS table
 
         // Add cardPanel to the frame
         frame.getContentPane().add(cardPanel);
