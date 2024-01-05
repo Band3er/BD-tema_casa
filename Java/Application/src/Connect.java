@@ -48,10 +48,23 @@ public class Connect {
 
     // template to populate all tables
     public boolean populateTable(String query) {
+        try {
+            conn.setAutoCommit(false);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         try (Statement stmt = conn.createStatement()) {
             int rowsAffected = stmt.executeUpdate(query);
+            conn.commit();
             return rowsAffected > 0; // Return true if at least one row was affected
         } catch (SQLException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
             e.printStackTrace();
             return false; // Return false if an exception occurred
         }
@@ -59,11 +72,24 @@ public class Connect {
 
     // template to delete a row from a table
     public boolean deleteTable(String query) {
+        try {
+            conn.setAutoCommit(false);
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         try (Statement stmt = conn.createStatement()) {
             int rowsAffected = stmt.executeUpdate(query);
+            conn.commit();
             return rowsAffected > 0; // Return true if at least one row was affected
         } catch (SQLException e) {
             e.printStackTrace();
+            try {
+                conn.rollback();
+            } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
             return false; // Return false if an exception occurred
         }
     }
