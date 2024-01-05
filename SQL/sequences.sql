@@ -34,17 +34,6 @@ FOR EACH ROW
         FROM dual;
     END;
 
-CREATE SEQUENCE money_id_money_sequence;
-
-CREATE OR REPLACE TRIGGER money_on_insert
-BEFORE INSERT ON MONEY
-FOR EACH ROW
-    BEGIN
-        SELECT money_id_money_sequence.nextval
-        INTO :new.id_money
-        FROM dual;
-    END;
-
 CREATE SEQUENCE drinks_id_drinks_sequnce;
 
 CREATE OR REPLACE TRIGGER drinks_on_insert
