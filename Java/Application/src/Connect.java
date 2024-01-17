@@ -25,7 +25,7 @@ public class Connect {
             ods.setUser("bd161");
             ods.setPassword("bd161");
             
-            // Attempts to establish a connection with the data source that
+            // Attempts to establish a connection with the data source
             conn = ods.getConnection();
             
             return true;

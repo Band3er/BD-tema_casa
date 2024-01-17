@@ -75,7 +75,6 @@ CREATE TABLE PERSONS
         EMAIL           VARCHAR2(50),
             CONSTRAINT persons_email_ck CHECK (REGEXP_LIKE(EMAIL, '[a-zA-Z0-9._%-]+@[a-zA-Z0-9._%-]+\.[a-zA-Z]{2,8}')),
             CONSTRAINT persons_email_uk UNIQUE (EMAIL),
-        BUDGET          NUMBER(3),
         TRANSPORT       NUMBER(3),
         MENU            NUMBER(3),
         DRINKS          NUMBER(3),
